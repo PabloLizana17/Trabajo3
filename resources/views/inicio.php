@@ -66,9 +66,9 @@ unlink('cam2.txt');
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
 							<li><a href="index.html">Trabajo 1</a></li>
-							<li class="active"><a href="portfolio.html">Trabajo 2</a></li>
-							<li class="has-dropdown"><a href="blog.html">Trabajo 3</a></li>
-							<li><a href="about.html">Trabajo 4</a></li>
+							<li ><a href="portfolio.html">Trabajo 2</a></li>
+							<li class="active"><a href="blog.html">Trabajo 3</a></li>
+							<li ><a href="about.html">Trabajo 4</a></li>
 						</ul>
 					</div>
 				</div>
@@ -81,14 +81,16 @@ unlink('cam2.txt');
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Trabajo 2</h2>
+					<h2>Trabajo 3</h2>
 					<p>En la siguiente pagina se podra observar el desarrollo de la segunda actividad a evaluar, la cual posee las siguientes exigencias:
 						<ul align = "justify">
-							<li>Ingresar 2 autómatas a la aplicación (pueden ser AFD y/o AFND)</li>
-							<li>Obtener el AFD equivalente (si es AFND) y simplificarlos.</li>
-							<li>Obtener el autómata a partir del complemento, unión, concatenación e intersección entre
-							ambos autómatas.</li>
-							<li>Pasar los autómatas del punto anterior a AFD y simplificarlos.</li>
+							<li>Ingresar 1 AFD o 2 AP a la aplicación</li>
+							<li>A partir de los autómatas ingresados, debe:
+								<ul>
+									<li>Obtener la ER para el AFD</li>
+									<li>Obtener la unión y concatenación para los 2 AP.</li>
+								</ul>
+							</li>
 						</ul>
 					</p>
 				</div>
