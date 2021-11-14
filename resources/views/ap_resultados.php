@@ -1,4 +1,6 @@
-
+<?php
+	require("funciones.php");
+?>
 <!DOCTYPE HTML>
 <html lang="es">
 	<head>
@@ -89,21 +91,10 @@
 			<div class="row animate-box">	
 				<div class="col-md-6 col-md-offset-3 text-center heading-section">
 					<h3>Demostracion</h3>
-					<p align = "justify">Ingrese valores AUTOMATA:</p>
+					<p align = "justify">Resultados</p>
 					<form action="afd_final" mclass="#fh5co-started" method="GET">
-						<p align = "text-center">	
-							<p align = "text-center">
-							Punto inicial <input type="number" min="0" name="ini">
-							<br>
-							<br>
-							Letra Camino <input type="char" name="letra">
-							<br>
-							<br>
-							Punto de llegada <input type="number" min="0" name="lleg">
-							<br>
-							<br>
-							<input type="submit" value="Ingresar">
-						</p>
+						<p align = "text-center"> Union: <?php union(); ?>	</p>
+						<p align = "text-center"> Concatenacion: <?php concatenacion(); ?> </p>
 					</form>
                     <a href="afd_resultados"><input type="button" value="Resultados"></a>
 				<div>
