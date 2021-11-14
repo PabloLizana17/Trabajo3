@@ -48,3 +48,6 @@ Route::get('ap_final2', function () {
 Route::get('ap_resultados', function () {
     return view('ap_resultados');
 });
+Route::get('prueba', function () {
+    return view('PRUEBA');
+});
