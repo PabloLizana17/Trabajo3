@@ -1,13 +1,13 @@
 <?php
-    //require("Administracion_de_datos.php");
-    require("funciones.php");
+    require("Administracion_de_datos.php");
+    //require("funciones.php");
 
-    camino();
+    //camino();
 
 
 
     //print_r(lectura_automata("AFD_status.txt"));
-    //print_r(lectura_ap("AP_status1.txt"));
+    print_r(lectura_datos_ap("AP_relleno1.txt"));
 
 
 
