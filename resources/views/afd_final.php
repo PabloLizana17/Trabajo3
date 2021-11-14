@@ -1,16 +1,15 @@
 <?php
-fopen('AFD_status.txt','a+');
-unlink('AFD_status.txt');
-fopen('AFD_relleno.txt','a+');
-unlink('AFD_relleno.txt');
-fopen('AP_status1.txt','a+');
-unlink('AP_status1.txt');
-fopen('AP_relleno1.txt','a+');
-unlink('AP_relleno1.txt');
-fopen('AP_status2.txt','a+');
-unlink('AP_status2.txt');
-fopen('AP_relleno2.txt','a+');
-unlink('AP_relleno2.txt');
+    $ini=$_GET['ini'];
+    $letra=$_GET['letra'];
+	$lleg=$_GET['lleg'];
+    $guardar=fopen('AFD_relleno.txt','a+');
+    fwrite($guardar,$ini);
+    fwrite($guardar,",");
+	fwrite($guardar,$lleg);
+	fwrite($guardar,"\n");
+	fwrite($guardar,$letra);
+	fwrite($guardar,"\n");
+    fclose($guardar);
 ?>
 <!DOCTYPE HTML>
 <html lang="es">
@@ -102,10 +101,25 @@ unlink('AP_relleno2.txt');
 			<div class="row animate-box">	
 				<div class="col-md-6 col-md-offset-3 text-center heading-section">
 					<h3>Demostracion</h3>
-					<p align = "justify">Eliga su Opción:</p>
-					<p> <a href="afd"><input type="button" value="AFD"></a> o <a href="ap"><input type="button" value="AP"></a> </p>
+					<p align = "justify">Ingrese valores AUTOMATA:</p>
+					<form action="afd_final" mclass="#fh5co-started" method="GET">
+						<p align = "text-center">	
+							<p align = "text-center">
+							Punto inicial <input type="number" min="0" name="ini">
+							<br>
+							<br>
+							Letra Camino <input type="char" name="letra">
+							<br>
+							<br>
+							Punto de llegada <input type="number" min="0" name="lleg">
+							<br>
+							<br>
+							<input type="submit" value="Ingresar">
+						</p>
+					</form>
+                    <a href="afd_resultados"><input type="button" value="Resultados"></a>
 				<div>
-			</div>
+            </div>
 		</div>
 	</div>
  
@@ -128,4 +142,3 @@ unlink('AP_relleno2.txt');
 
 	</body>
 </html>
-

@@ -1,17 +1,3 @@
-<?php
-fopen('AFD_status.txt','a+');
-unlink('AFD_status.txt');
-fopen('AFD_relleno.txt','a+');
-unlink('AFD_relleno.txt');
-fopen('AP_status1.txt','a+');
-unlink('AP_status1.txt');
-fopen('AP_relleno1.txt','a+');
-unlink('AP_relleno1.txt');
-fopen('AP_status2.txt','a+');
-unlink('AP_status2.txt');
-fopen('AP_relleno2.txt','a+');
-unlink('AP_relleno2.txt');
-?>
 <!DOCTYPE HTML>
 <html lang="es">
 	<head>
@@ -102,10 +88,21 @@ unlink('AP_relleno2.txt');
 			<div class="row animate-box">	
 				<div class="col-md-6 col-md-offset-3 text-center heading-section">
 					<h3>Demostracion</h3>
-					<p align = "justify">Eliga su Opción:</p>
-					<p> <a href="afd"><input type="button" value="AFD"></a> o <a href="ap"><input type="button" value="AP"></a> </p>
+					<p align = "justify">Ingrese valores AUTOMATA:</p>
+					<form action="afd_recoleccion" mclass="#fh5co-started" method="GET">
+						<p align = "text-center">	
+							<p align = "text-center">Numero de estados: <input type="number" min="0" name="estados"></p>
+							Estado inicial <input type="number" min="0" name="estini">
+							<br>
+							<br>
+							Estados finales <input name="estfin">
+							<br>
+							<br>
+							<input type="submit" value="Ingresar">
+						</p>
+					</form>
 				<div>
-			</div>
+            </div>
 		</div>
 	</div>
  
