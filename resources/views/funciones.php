@@ -1,7 +1,7 @@
 <?php
 
     require("Administracion_de_datos.php");
-    
+
     use Illuminate\Foundation\Inspiring;
     use Illuminate\Support\Facades\Artisan;
     use Illuminate\Support\Facades\Log;
@@ -127,7 +127,7 @@
 
     function camino_ap($matriz,$archivo,$archivo1)
     {
-        $data1=lectura_ap($archivo1);
+        $data1=lectura_datos_ap($archivo1);
         $data=lectura_ap($archivo);
         $auto="";
         $i=$data["inicio"];
@@ -147,58 +147,59 @@
 
         do
         {
-            for($x=0;$x<sizeof($matriz[$i][$j]);$x++)
+            if(!empty($matriz[$i][$j]))
             {
-                array_push($aux,$matriz[$i][$j][$x]);
-            }
+                for($x=0;$x<sizeof($matriz[$i][$j]);$x++)
+                {
+                    array_push($aux,$matriz[$i][$j][$x]);
+                }
 
-            $aux2=$aux2.$aux[$m];
-                
-            if($aux2[2]=="E")
-            {
-                if($aux2[0]!="E" && $aux2[4]!="E")
+                $aux2=$aux2.$aux[$m];
+            
+                if($aux2[2]=="E")
                 {
-                    array_push($pila,$aux2[4]);
-                    array_push($k,$aux2[0]);
-                }
-                elseif($aux2[0]=="E" && $aux2[4]!="E")
-                {
-                    array_push($pila,$aux2[4]);;
-                }
-                elseif($aux2[0]!="E" && $aux2[4]=="E")
-                {
-                    array_push($k,$aux2[0]);
-                }
-                array_push($h,$i);
-                array_push($f,$j);
-                array_push($g,$m);
-                $m=0;
-                $i=$j;
-            }
-            elseif($aux2[2]!="E" && empty($pila))
-            {
-                do
-                {
-                    $m++;
-                    if($m>=sizeof($aux))
+                    if($aux2[0]!="E" && $aux2[4]!="E")
                     {
-                        $j++;
-                        $m=0;
+                        array_push($pila,$aux2[4]);
+                        array_push($k,$aux2[0]);
                     }
-                    if($j>=$data1["cantidad"])
+                    elseif($aux2[0]=="E" && $aux2[4]!="E")
                     {
-                        array_pop($pila);
-                        array_pop($k);
-                        $i=array_pop($h);
-                        $j=array_pop($f);
-                        $m=array_pop($g)+1;
+                        array_push($pila,$aux2[4]);;
                     }
-                }while($m>=sizeof($aux));
-            }
-            elseif($aux2[2]!="E" && !empty($pila))
-            {
-                $a=array_pop($pila);
-                if($a!=$aux2)
+                    elseif($aux2[0]!="E" && $aux2[4]=="E")
+                    {
+                        array_push($k,$aux2[0]);
+                    }
+                    if($aux=="E/E/E" && $i==$j)
+                    {
+                        do
+                        {
+                            $m++;
+                            if($m>=sizeof($aux))
+                            {
+                                $j++;
+                                $m=0;
+                            }
+                            if($j>=$data1["cantidad"])
+                            {
+                                array_pop($pila);
+                                array_pop($k);
+                                $i=array_pop($h);
+                                $j=array_pop($f);
+                                $m=array_pop($g)+1;
+                            }
+                        }while($m>=sizeof($aux));
+                    }
+                    else
+                    {
+                        array_push($h,$i);
+                        array_push($f,$j);
+                        array_push($g,$m);
+                        $i=$j;
+                    }
+                }
+                elseif($aux2[2]!="E" && empty($pila))
                 {
                     do
                     {
@@ -218,28 +219,76 @@
                         }
                     }while($m>=sizeof($aux));
                 }
-                else
+                elseif($aux2[2]!="E" && !empty($pila))
                 {
-                    if($aux2[0]!="E" && $aux2[4]!="E")
+                    $a=array_pop($pila);
+                    if($a!=$aux2)
                     {
-                        array_push($pila,$aux2[4]);
-                        array_push($k,$aux2[0]);
+                        do
+                        {
+                            $m++;
+                            if($m>=sizeof($aux))
+                            {
+                                $j++;
+                                $m=0;
+                            }
+                            if($j>=$data1["cantidad"])
+                            {
+                                array_pop($pila);
+                                array_pop($k);
+                                $i=array_pop($h);
+                                $j=array_pop($f);
+                                $m=array_pop($g)+1;
+                            }
+                        }while($m>=sizeof($aux));
                     }
-                    elseif($aux2[0]=="E" && $aux2[4]!="E")
+                    else
                     {
-                        array_push($pila,$aux2[4]);
+                        if($aux2[0]!="E" && $aux2[4]!="E")
+                        {
+                            array_push($pila,$aux2[4]);
+                            array_push($k,$aux2[0]);
+                        }
+                        elseif($aux2[0]=="E" && $aux2[4]!="E")
+                        {
+                            array_push($pila,$aux2[4]);
+                        }
+                        elseif($aux2[0]!="E" && $aux2[4]=="E")
+                        {
+                            array_push($k,$aux2[0]);
+                        }
+                        if($aux=="E/E/E" && $i==$j)
+                        {
+                            do
+                            {
+                                $m++;
+                                if($m>=sizeof($aux))
+                                {
+                                    $j++;
+                                    $m=0;
+                                }
+                                if($j>=$data1["cantidad"])
+                                {
+                                    array_pop($pila);
+                                    array_pop($k);
+                                    $i=array_pop($h);
+                                    $j=array_pop($f);
+                                    $m=array_pop($g)+1;
+                                }
+                            }while($m>=sizeof($aux));
+                        }
+                        else
+                        {
+                            array_push($h,$i);
+                            array_push($f,$j);
+                            array_push($g,$m);
+                            $i=$j;
+                        }
                     }
-                    elseif($aux2[0]!="E" && $aux2[4]=="E")
-                    {
-                        array_push($k,$aux2[0]);
-                    }
-                    array_push($h,$i);
-                    array_push($f,$j);
-                    array_push($g,$m);
-                    $m=0;
-                    $i=$j;
                 }
             }
+            else
+                $j++;
 
             if($cont>=75)
                 break;
@@ -267,16 +316,17 @@
 
     function union()
     {
-        $matriz1=crearmatrizap("AP_status1.txt","AP_relleno1");
-        $matriz2=crearmatrizap("AP_status2.txt","AP_relleno2");
+        $matriz1=crearmatrizap("AP_status1.txt","AP_relleno1.txt");
+        $matriz2=crearmatrizap("AP_status2.txt","AP_relleno2.txt");
         $auto="";
-        $camino1=camino_ap($matriz1,"AP_status1.txt","AP_relleno1");
-        $camino2=camino_ap($matriz2,"AP_status2.txt","AP_relleno2");
+        $camino1=camino_ap($matriz1,"AP_status1.txt","AP_relleno1.txt");
+        $camino2=camino_ap($matriz2,"AP_status2.txt","AP_relleno2.txt");
 
         if($camino1=="")
         {
             Log::warning("No hay camino para automata de pila 1");
             print("No se encontro camino para automata de pila 1");
+            echo "</br>";
         }
         if($camino2=="")
         {
@@ -301,11 +351,11 @@
 
     function concatenacion()
     {
-        $matriz1=crearmatrizap("AP_status1.txt","AP_relleno1");
-        $matriz2=crearmatrizap("AP_status2.txt","AP_relleno2");
+        $matriz1=crearmatrizap("AP_status1.txt","AP_relleno1.txt");
+        $matriz2=crearmatrizap("AP_status2.txt","AP_relleno2.txt");
         $auto="";
-        $camino1=camino_ap($matriz1,"AP_status1.txt","AP_relleno1");
-        $camino2=camino_ap($matriz2,"AP_status2.txt","AP_relleno2");
+        $camino1=camino_ap($matriz1,"AP_status1.txt","AP_relleno1.txt");
+        $camino2=camino_ap($matriz2,"AP_status2.txt","AP_relleno2.txt");
 
         if($camino1=="")
         {
